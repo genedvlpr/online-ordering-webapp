@@ -6,7 +6,7 @@ var func;
 var doc_id;
 
 var firebaseConfig = {
-  apiKey: "AIzaSyA5IhybJTE_9MElLVewBuQeE_0jqLdEM2E",
+  apiKey: "[API_KEY]",
   authDomain: "wood-scrap.firebaseapp.com",
   databaseURL: "https://wood-scrap.firebaseio.com",
   projectId: "wood-scrap",
