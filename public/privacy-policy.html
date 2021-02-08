@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Privacy Policy</title>
+
+    <link rel="stylesheet" href="css/index.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="red" content="#5a1720">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="css/angular-material.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+      <style>
+        body{ 
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-color: #fafafa;
+          background-attachment:scroll; 
+          align-content: center;
+        }
+      </style>
+  
+    </head>
+      <body id="body" ng-app="NewApp" ng-cloak ng-controller="AppCtrl">
+        <!--
+          Your HTML content here
+        -->  
+        
+        <!-- Angular Material requires Angular.js Libraries -->
+        <script src="js/angular.min.js"></script>
+        <script src="js/angular-animate.min.js"></script>
+        <script src="js/angular-aria.min.js"></script>
+        <script src="js/angular-messages.min.js"></script>
+      
+        <!-- Angular Material Library -->
+        <script src="js/angular-material.min.js"></script>
+        
+        <md-content id="content" style="background-color: transparent;">
+            <md-toolbar class="md-whiteframe-2dp" id="toolbar" style="position: fixed; top:0%; background-color: #F5F5F5;color:#304FFE">
+                <div class="md-toolbar-tools" >
+                    <md-button class="md-icon-button"  ng-click="toggleLeft()"    >
+                        <md-icon>
+                          <i class="material-icons" style="color: #304FFE">menu</i>
+                        </md-icon>
+                    </md-button>
+              
+                    <div flex md-truncate >
+                        <img src="./src/ic_logo_new.png" style="width: 120px;height:45px;"> 
+                      </div>
+              
+                      <md-button href="./store.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">Store</md-button>
+                      <md-button href="./about.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">About</md-button>
+                      <md-button href="./terms-conditions.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">Terms & Condition</md-button>
+                      <md-button href="./privacy-policy.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">Privacy Policy</md-button>
+                </div>
+            </md-toolbar>
+      
+            <div ng-controller="AppCtrl" layout="column"  ng-cloak style="background-color: #536DFE; ">
+       
+              
+              <md-sidenav class="md-sidenav-left" md-component-id="left"
+                              md-disable-backdrop="" md-whiteframe="8" style="background-color: #304FFE">
+               
+              
+                    <md-content layout-margin=""  style="background-color: #304FFE">
+                            <md-list ng-controller="ListCtrl" ng-cloak> 
+                                <md-list-item class="md-2-line" ng-repeat="item in todos" ng-click="null" href="{{ item.href }}">
+                                        <img style="filter: grayscale(100%);" id="md-avatar" ng-src="{{item.face}}"   alt="{{item.who}}" />
+    
+                                        <div class="md-list-item-text" layout="column">
+                                          <h3 id="list_title">{{ item.title }}</h3>
+                                          <h4 id="list-subhead">{{ item.description }}</h4>
+                                        </div>
+                                      </md-list-item>
+                            </md-list>
+                      <div layout-align="end end" layout="column" >
+                        <md-button class="md-fab md-mini md-primary" ng-click="toggleLeft()" style="background-color: #FAFAFA">
+                            <md-icon>
+                              <i class="material-icons"  style="color: #304FFE">chevron_left</i>
+                            </md-icon>
+                        </md-button>
+                      </div>
+                      
+                    </md-content>
+              
+                  </md-sidenav>
+              
+                  <md-content layout="column" layout-align="center center" style="background-color: transparent; margin-top: 56px;margin-left:4%;margin-right:4%">
+               
+                     
+                    <div layout-align-lg="center center" layout-align-xs="center center" layout-lg="row" layout-xs="column"  style="margin-top: 100px;margin-bottom: 100px">
+
+                      <div layout="column" class="md-padding" >
+                           <md-card class="md-whiteframe-6dp" style="padding: 100px; font-size: 14px;margin-top: 70px"> 
+                            <h1  id="headline" style="text-align: left">Welcome to our Privacy Policy</h1>
+                            <h3>Your privacy is critically important to us.</h3>
+                            V.C. SAPUTIL LUMBER & PALLETS is located at:<br/>
+                            <address>
+                              V.C. SAPUTIL LUMBER & PALLETS<br/>Biga 1 Silang <br />4118 - Cavite , Philippines<br/>09278474990			</address>
+                      
+                            <p>It is V.C. SAPUTIL LUMBER & PALLETS's policy to respect your privacy regarding any information we may collect while operating our website. This Privacy Policy applies to <a href="https://wood-scrap-ph.web.app.web.app">https://wood-scrap-ph.web.app.web.app</a> (hereinafter, "us", "we", or "https://wood-scrap-ph.web.app.web.app"). We respect your privacy and are committed to protecting personally identifiable information you may provide us through the Website. We have adopted this privacy policy ("Privacy Policy") to explain what information may be collected on our Website, how we use this information, and under what circumstances we may disclose the information to third parties. This Privacy Policy applies only to information we collect through the Website and does not apply to our collection of information from other sources.</p>
+                            <p>This Privacy Policy, together with the Terms and conditions posted on our Website, set forth the general rules and policies governing your use of our Website. Depending on your activities when visiting our Website, you may be required to agree to additional terms and conditions.</p>
+                      
+                            
+                                  <h2 id="headline" style="text-align: left">Gathering of Personally-Identifying Information</h2>
+                            <p>Certain visitors to V.C. SAPUTIL LUMBER & PALLETS's websites choose to interact with V.C. SAPUTIL LUMBER & PALLETS in ways that require V.C. SAPUTIL LUMBER & PALLETS to gather personally-identifying information. The amount and type of information that V.C. SAPUTIL LUMBER & PALLETS gathers depends on the nature of the interaction. For example, we ask visitors who sign up for a blog at https://wood-scrap-ph.web.app.web.app to provide a username and email address.</p>
+                            
+                                  <h2 id="headline" style="text-align: left">Security</h2>
+                            <p>The security of your Personal Information is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Information, we cannot guarantee its absolute security.</p>
+                            
+                            
+                      
+                                  <h2 id="headline" style="text-align: left">Links To External Sites</h2>
+                            <p>Our Service may contain links to external sites that are not operated by us. If you click on a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy and terms and conditions of every site you visit.</p>
+                            <p>We have no control over, and assume no responsibility for the content, privacy policies or practices of any third party sites, products or services.</p>
+                            
+                            
+                                  <h2 id="headline" style="text-align: left">Protection of Certain Personally-Identifying Information</h2>
+                            <p>V.C. SAPUTIL LUMBER & PALLETS discloses potentially personally-identifying and personally-identifying information only to those of its employees, contractors and affiliated organizations that (i) need to know that information in order to process it on V.C. SAPUTIL LUMBER & PALLETS's behalf or to provide services available at V.C. SAPUTIL LUMBER & PALLETS's website, and (ii) that have agreed not to disclose it to others. Some of those employees, contractors and affiliated organizations may be located outside of your home country; by using V.C. SAPUTIL LUMBER & PALLETS's website, you consent to the transfer of such information to them. V.C. SAPUTIL LUMBER & PALLETS will not rent or sell potentially personally-identifying and personally-identifying information to anyone. Other than to its employees, contractors and affiliated organizations, as described above, V.C. SAPUTIL LUMBER & PALLETS discloses potentially personally-identifying and personally-identifying information only in response to a subpoena, court order or other governmental request, or when V.C. SAPUTIL LUMBER & PALLETS believes in good faith that disclosure is reasonably necessary to protect the property or rights of V.C. SAPUTIL LUMBER & PALLETS, third parties or the public at large.</p>
+                            <p>If you are a registered user of https://wood-scrap-ph.web.app.web.app and have supplied your email address, V.C. SAPUTIL LUMBER & PALLETS may occasionally send you an email to tell you about new features, solicit your feedback, or just keep you up to date with what's going on with V.C. SAPUTIL LUMBER & PALLETS and our products. We primarily use our blog to communicate this type of information, so we expect to keep this type of email to a minimum. If you send us a request (for example via a support email or via one of our feedback mechanisms), we reserve the right to publish it in order to help us clarify or respond to your request or to help us support other users. V.C. SAPUTIL LUMBER & PALLETS takes all measures reasonably necessary to protect against the unauthorized access, use, alteration or destruction of potentially personally-identifying and personally-identifying information.</p>
+                            
+                                  <h2 id="headline" style="text-align: left">Aggregated Statistics</h2>
+                            <p>V.C. SAPUTIL LUMBER & PALLETS may collect statistics about the behavior of visitors to its website. V.C. SAPUTIL LUMBER & PALLETS may display this information publicly or provide it to others. However, V.C. SAPUTIL LUMBER & PALLETS does not disclose your personally-identifying information.</p>
+                            
+                            
+                                  <h2 id="headline" style="text-align: left">Cookies</h2>
+                            <p>To enrich and perfect your online experience, V.C. SAPUTIL LUMBER & PALLETS uses "Cookies", similar technologies and services provided by others to display personalized content, appropriate advertising and store your preferences on your computer.</p>
+                            <p>A cookie is a string of information that a website stores on a visitor's computer, and that the visitor's browser provides to the website each time the visitor returns. V.C. SAPUTIL LUMBER & PALLETS uses cookies to help V.C. SAPUTIL LUMBER & PALLETS identify and track visitors, their usage of https://wood-scrap-ph.web.app.web.app, and their website access preferences. V.C. SAPUTIL LUMBER & PALLETS visitors who do not wish to have cookies placed on their computers should set their browsers to refuse cookies before using V.C. SAPUTIL LUMBER & PALLETS's websites, with the drawback that certain features of V.C. SAPUTIL LUMBER & PALLETS's websites may not function properly without the aid of cookies.</p>
+                            <p>By continuing to navigate our website without changing your cookie settings, you hereby acknowledge and agree to V.C. SAPUTIL LUMBER & PALLETS's use of cookies.</p>
+                            
+                                  <h2 id="headline" style="text-align: left">E-commerce</h2>
+                            <p>Those who engage in transactions with V.C. SAPUTIL LUMBER & PALLETS – by purchasing V.C. SAPUTIL LUMBER & PALLETS's services or products, are asked to provide additional information, including as necessary the personal and financial information required to process those transactions. In each case, V.C. SAPUTIL LUMBER & PALLETS collects such information only insofar as is necessary or appropriate to fulfill the purpose of the visitor's interaction with V.C. SAPUTIL LUMBER & PALLETS. V.C. SAPUTIL LUMBER & PALLETS does not disclose personally-identifying information other than as described below. And visitors can always refuse to supply personally-identifying information, with the caveat that it may prevent them from engaging in certain website-related activities.</p>
+                            
+                                  <h2 id="headline" style="text-align: left">Business Transfers</h2>
+                            <p>If V.C. SAPUTIL LUMBER & PALLETS, or substantially all of its assets, were acquired, or in the unlikely event that V.C. SAPUTIL LUMBER & PALLETS goes out of business or enters bankruptcy, user information would be one of the assets that is transferred or acquired by a third party. You acknowledge that such transfers may occur, and that any acquirer of V.C. SAPUTIL LUMBER & PALLETS may continue to use your personal information as set forth in this policy.</p>
+                            
+                                  <h2 id="headline" style="text-align: left">Privacy Policy Changes</h2>
+                            <p>Although most changes are likely to be minor, V.C. SAPUTIL LUMBER & PALLETS may change its Privacy Policy from time to time, and in V.C. SAPUTIL LUMBER & PALLETS's sole discretion. V.C. SAPUTIL LUMBER & PALLETS encourages visitors to frequently check this page for any changes to its Privacy Policy. Your continued use of this site after any change in this Privacy Policy will constitute your acceptance of such change.</p>
+                             
+                          </md-card>
+                           
+                        </div> 
+                  </div>
+
+                   
+                  </md-content> 
+
+              </div>
+              
+              <div style=" background-color: #304FFE; margin-bottom: 0% " layout-align="center center" layout-xs="column" layoput-sm="column" layout-lg="row"> 
+
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column">
+                  <md-button href="./store.html" style="width: 200px; text-align: left;text-indent: 20px">Store</md-button> 
+                  <md-button href="./index.html" style="width: 200px; text-align: left;text-indent: 20px">Home</md-button> 
+                </div>
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column"> 
+                  <md-button href="./about.html" style="width: 200px; text-align: left;text-indent: 20px">About</md-button>
+                  <md-button href="./terms-conditions.html" style="width: 200px; text-align: left;text-indent: 20px">Terms & Condition</md-button>  
+                </div>
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column"> 
+                  <md-button href="./privacy-policy.html" style="width: 200px; text-align: left;text-indent: 20px">Privacy Policy</md-button> 
+                  <md-button href="./login.html" style="width: 200px; text-align: left;text-indent: 20px">Account</md-button> 
+                </div>
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column">  
+                  <md-button href="./locations.html" style="width: 200px; text-align: left;text-indent: 20px">Office Location</md-button>
+                  <md-button href="./contact-us.html" style="width: 200px; text-align: left;text-indent: 20px">Contact Us</md-button>
+                </div>
+            </div> 
+      </md-content> 
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
+
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-firestore.js"></script>
+
+      <script src="js/init-firebase.js"></script>
+      <script src="js/index.js"></script>       
+  </body>
+  
+
+</html>

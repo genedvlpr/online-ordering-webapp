@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="css/index.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="red" content="#00E676">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="css/angular-material.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+    <style>
+      body{ 
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #fafafa;
+        background-attachment:scroll; 
+        align-content: center;
+      }
+    </style>
+
+  </head>
+    <body id="body" ng-app="NewApp" ng-cloak ng-controller="AppCtrl">
+      <!--
+        Your HTML content here
+      -->  
+      
+      <!-- Angular Material requires Angular.js Libraries -->
+      <script src="js/angular.min.js"></script>
+      <script src="js/angular-animate.min.js"></script>
+      <script src="js/angular-aria.min.js"></script>
+      <script src="js/angular-messages.min.js"></script>
+    
+      <!-- Angular Material Library -->
+      <script src="js/angular-material.min.js"></script>
+      
+      <md-content id="content" style="background-color: transparent;">
+          <md-toolbar class="md-whiteframe-2dp" id="toolbar" style="position: fixed; top:0%; background-color: #F5F5F5;color:#304FFE">
+              <div class="md-toolbar-tools" >
+                  <md-button class="md-icon-button"  ng-click="toggleLeft()"    >
+                      <md-icon>
+                        <i class="material-icons" style="color: #304FFE">menu</i>
+                      </md-icon>
+                  </md-button>
+            
+                  <div flex md-truncate >
+                      <img src="./src/ic_logo_new.png" style="width: 120px;height:45px;"> 
+                    </div>
+            
+                    <md-button href="./store.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">Store</md-button>
+                    <md-button href="./about.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">About</md-button>
+                    <md-button href="./terms-conditions.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">Terms & Condition</md-button>
+                    <md-button href="./privacy-policy.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">Privacy Policy</md-button>
+              </div>
+          </md-toolbar>
+    
+          <div ng-controller="AppCtrl" layout="column"  ng-cloak style="background-color: #FAFAFA; ">
+     
+              
+                  <md-sidenav class="md-sidenav-left" md-component-id="left"
+                              md-disable-backdrop="" md-whiteframe="8" style="background-color: #304FFE">
+               
+              
+                    <md-content layout-margin=""  style="background-color: #304FFE">
+                            <md-list ng-controller="ListCtrl" ng-cloak> 
+                                <md-list-item class="md-2-line" ng-repeat="item in todos" ng-click="null" href="{{ item.href }}">
+                                        <img style="filter: grayscale(100%);" id="md-avatar" ng-src="{{item.face}}"   alt="{{item.who}}" />
+    
+                                        <div class="md-list-item-text" layout="column">
+                                          <h3 id="list_title">{{ item.title }}</h3>
+                                          <h4 id="list-subhead">{{ item.description }}</h4>
+                                        </div>
+                                      </md-list-item>
+                            </md-list>
+                      <div layout-align="end end" layout="column" >
+                        <md-button class="md-fab md-mini md-primary" ng-click="toggleLeft()" style="background-color: #FAFAFA">
+                            <md-icon>
+                              <i class="material-icons"  style="color: #304FFE">chevron_left</i>
+                            </md-icon>
+                        </md-button>
+                      </div>
+                      
+                    </md-content>
+              
+                  </md-sidenav>
+              
+                  <md-content layout="column" layout-align="center center" style="background-color: transparent; margin-top: 56px;">
+               
+                    <div layout-align="center start" layout-lg="row" layout-sm="column" >
+                      <div  style="margin: 20px" layout="column" >
+                        <h1 id="headline" class="md-display-3" style="text-align: left ;margin-top:50px; font-size: 84px; line-height: 84px">Shop now<br>through online!</h1>
+                        <h3 id="subhead" class="md-headline" style="text-align: left;margin-top:-5% ">In need with a high quality scrap wood?<br> Shop now through our online store, <br>It is secured and so easy to use!</h3>
+                      </div>
+                        
+                        <img hide-xs hide-sm src="./src/img_01.png" style="width: 400px;height:400px; margin-top: 50px;margin-left:70px">
+                    </div>
+ 
+
+                    <div layout-align-lg="center start" layout-align-xs="center center" layout-lg="row" layout-xs="column"   style="margin-top:30px">
+                      <img hide-xs hide-sm src="./src/img_02.png" style="width: 400px;height:400px; margin-top: 50px; margin-right: 90px">
+
+                        <div layout="column" class="md-padding" style=" margin-top: 150px">
+                            <h1 layout-align-sm="center center" id="headline" class="md-display-3" style="text-align: left ;">Store</h1>
+                            <h3 layout-align-sm="center center" id="subhead" class="md-subhead" style="text-align: left ; margin-top:-5% ">
+                              Check out our online store, view our quality assured products<br>
+                              and shop your needed scrap woods for your furniture project.
+                            </h3>
+                            <md-button class="md-flat" href="https://wood-scrap.firebaseapp.com/login.html" style="width: 200px; margin-left:0px; background-color: #304FFE;color: #FAFAFA;">Shop Now</md-button>
+                          </div> 
+                    </div>
+
+                    <div layout-align-lg="center start" layout-align-xs="center center" layout-lg="row" layout-xs="column"  style="margin-top:  30px">
+
+                      <img hide-xs hide-sm src="./src/img_05.png" style="width: 400px;height:400px; margin-right: 50px ">
+                       
+                        <div layout="column" class="md-padding" style=" margin-top: 100px" >
+                        <h1 layout-align-sm="center center" id="headline" class="md-display-3" style="text-align: left ;">COD</h1>
+                            <h3 layout-align-sm="center center" id="subhead" class="md-subhead" style="text-align: left;margin-top:-5% ">
+                              We deliver high quality woods through Cash on Delivery service,<br>we aim to give you a better service and less hasle<br>on payment transactions.
+                            </h3>
+                            <md-button class="md-flat" style="width: 200px; margin-left:0px; background-color: #304FFE;color: #FAFAFA;" href="login.html">Go to Store</md-button>
+                          </div>
+                    </div>
+
+                    <div layout-align-lg="center center" layout-align-xs="center center" layout-lg="row" layout-xs="column"  style="margin-top: 30px;padding-bottom: 100px">
+
+                      <div layout="column" class="md-padding" style="margin: 20px" layout-align-lg="center center" layout-align-xs="center center" layout-align-sm="center center">
+                          <h1 id="headline" class="md-display-3" style="text-align: center ;">About Us</h1>
+                          <h3 id="subhead" class="md-subhead" style="text-align: center;margin-top:0% ">
+                            Welcome to Scrap Wood, your number one source for lumber woods. <br> We're dedicated to provide you the very best of our products, with an emphasis on quality, durability and Excellence.
+                          <br>We hope you enjoy our products as much as we enjoy offering them to you.<br>If you have any questions or comments, please don't hesitate to contact us.</h3>
+                          <md-button class="md-flat" href="https://wood-scrap.firebaseapp.com/about.html" style="width: 200px; margin-left:0px;background-color: #304FFE;color: #FAFAFA;">View More</md-button>
+                        </div> 
+                  </div>
+                  </md-content> 
+
+              </div>
+              
+              <div style=" background-color: #304FFE; margin-bottom: 0% " layout-align="center center" layout-xs="column" layoput-sm="column" layout-lg="row"> 
+
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column">
+                  <md-button href="./store.html" style="width: 200px; text-align: left;text-indent: 20px">Store</md-button> 
+                  <md-button href="./index.html" style="width: 200px; text-align: left;text-indent: 20px">Home</md-button> 
+                </div>
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column"> 
+                  <md-button href="./about.html" style="width: 200px; text-align: left;text-indent: 20px">About</md-button>
+                  <md-button href="./terms-conditions.html" style="width: 200px; text-align: left;text-indent: 20px">Terms & Condition</md-button>  
+                </div>
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column"> 
+                  <md-button href="./privacy-policy.html" style="width: 200px; text-align: left;text-indent: 20px">Privacy Policy</md-button> 
+                  <md-button href="./login.html" style="width: 200px; text-align: left;text-indent: 20px">Account</md-button> 
+                </div>
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column">  
+                  <md-button href="./locations.html" style="width: 200px; text-align: left;text-indent: 20px">Office Location</md-button>
+                  <md-button href="./contact-us.html" style="width: 200px; text-align: left;text-indent: 20px">Contact Us</md-button>
+                </div>
+            </div> 
+      </md-content> 
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
+
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-firestore.js"></script>
+
+      <script src="js/init-firebase.js"></script>
+      <script src="js/index.js"></script>       
+  </body>
+  
+
+</html>

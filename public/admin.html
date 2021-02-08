@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin</title>
+
+    <link rel="stylesheet" href="css/index.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="red" content="#5a1720">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="css/angular-material.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <meta name="google-signin-scope" content="profile email">
+      <meta name="google-signin-client_id" content="894710452295-tfnq8irf0p6fphcihr32307p3rgom59t.apps.googleusercontent.com">
+      <script src="https://apis.google.com/js/platform.js" async defer></script>  
+      <style>
+        body{ 
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-color: #fafafa;
+          background-attachment:scroll; 
+          align-content: center;
+        }
+      </style>
+  
+    </head>
+      <body id="body" ng-app="NewApp" ng-cloak ng-controller="AppCtrl">
+        <!--
+          Your HTML content here
+        -->  
+        
+        <!-- Angular Material requires Angular.js Libraries -->
+        <script src="js/angular.min.js"></script>
+        <script src="js/angular-animate.min.js"></script>
+        <script src="js/angular-aria.min.js"></script>
+        <script src="js/angular-messages.min.js"></script>
+      
+        <!-- Angular Material Library -->
+        <script src="js/angular-material.min.js"></script>
+        
+        <md-content id="content" style="background-color: transparent;">
+            <md-toolbar class="md-whiteframe-2dp" id="toolbar" style="   top:0%; background-color: #F5F5F5;color:#304FFE">
+                <div class="md-toolbar-tools" >
+                     
+              
+                    <div flex md-truncate >
+                        <img src="./src/ic_logo_new.png" style="width: 120px;height:45px;"> 
+                      </div>
+              
+                      <md-button href="./store-admin.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">Store</md-button>
+                      <md-button href="./about.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">About</md-button>
+                      <md-button href="./terms-conditions.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">Terms & Condition</md-button>
+                      <md-button href="./privacy-policy.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">Privacy Policy</md-button>
+                </div>
+            </md-toolbar>
+      
+            <div ng-controller="AppCtrl" layout="row"  ng-cloak style="background-color: #FAFAFA; ">
+         
+              <md-sidenav md-component-id="left" layout="row"
+            md-is-locked-open="$mdMedia('gt-md')" class="md-sidenav-left" md-component-id="left"
+                            md-disable-backdrop=""  style="background-color: #3D5AFE; height: auto;">
+             
+            
+                  <md-content layout-margin=""  style="background-color: #3D5AFE;color: #fff;width: 100%;">
+                          <md-list ng-controller="ListCtrl" layout-align="center center" > 
+                               
+                            <md-list-item class="md-1-line"  ng-click="null" onclick="showAddItems()">
+                                <img style="width: 24px;height:24px;margin-right:20px" ng-src="./src/add_item.png" />
+                                <p id="list_title">Add Items</p>  
+                            </md-list-item>
+
+                            <md-divider></md-divider>
+
+                            <md-list-item class="md-1-line"  ng-click="null" onclick="showOrders()" >
+                                <img style="width: 24px;height:24px;margin-right:20px" ng-src="./src/order_items.png" /> 
+                                <p id="list_title">Orders </p>  
+                            </md-list-item>
+
+                            <md-divider></md-divider>
+
+                            <md-list-item class="md-1-line"  ng-click="null" onclick="showProcessing()" >
+                              <img style="width: 24px;height:24px;margin-right:20px" ng-src="./src/processing.png" /> 
+                              <p id="list_title">Processing </p>  
+                            </md-list-item>
+
+                            <md-divider></md-divider>
+
+                            <md-list-item class="md-1-line"  ng-click="null"  onclick="showDelivered()" >
+                                <img style="width: 24px;height:24px;margin-right:20px" ng-src="./src/check.png" />
+                                <p id="list_title">Delivered</p>   
+                            </md-list-item>
+ 
+                          <md-button class="md-raised"  style="width: 230px; bottom: 0%;position: absolute; align-self: center;margin-left: 30px;" onclick="logoutAccount()">Logout</md-button>
+                             
+                          </md-list>
+                    
+                    
+                  </md-content>
+            
+                </md-sidenav>
+                
+              
+                  <md-content layout="column" layout-align="center start" style="background-color: transparent; margin:5%;width:60%">
+                
+                    <div id="add_items">
+                      <h1 class="md-display-1" style="color: #304FFE;">Add new item in Store</h1>
+                      <md-card  style="padding: 0%;" layout-align="center center">
+                        <md-card-content  layout="column" layout-align="center center">
+                          <div style="align-items: center;position: relative;">
+                            
+                            <label id="file_name" name="files[]" style="position: absolute;bottom: 0px;font-size: 12px;"></label>
+                            <div style='height: 0px;width: 0px; overflow:hidden;'>
+                              <input id="files" type="file" value="upload" onchange="sub(this)" />
+                            </div>
+                          <output id="list" ></output>
+                          </div>
+                           <div layout="column" layout-padding >
+                          <md-input-container flex md-no-float style="margin: 0px;" >
+                            <input id="item_name" placeholder="Item Name" aria-label="Item Name" style="font-size: smaller;">
+                          </md-input-container>
+                          <md-input-container flex md-no-float  style="margin: 0px;margin-top: -20px;" >
+                            <input id="item_desc" placeholder="Item Description" aria-label="Item Description" style="font-size: smaller;">
+                          </md-input-container>
+                          <div layout="row" layout-align="start center" style="margin-top: -20px;">
+                            <h4 class="md-subhead" style="vertical-align: middle;margin-top: -3px;">PHP</h4>
+                            <md-input-container flex md-no-float  style="margin: 0px;" >
+                              <input id="item_price" placeholder="Item Price" aria-label="Item Price" value="" style="font-size: smaller;">
+                            </md-input-container>
+                          </div>
+                          
+
+                          <md-card-actions class="md-block" layout="row" style="margin: 0px;margin-top: -20px" flex >
+                            <md-button id="refresh" onclick="refresh()" class="md-icon-button"  >
+                            
+                              <md-icon   md-svg-icon="/src/close.svg"> 
+                              </md-icon>
+                            </md-button>
+                            <md-button onclick="uploadItemToDB()" class="flat md-block" flex >
+                              SAVE
+                            </md-button> 
+                            <md-button id="add_photo" onclick="getFile()" class="md-icon-button"  >
+                            
+                                <md-icon   md-svg-icon="/src/add_photo.svg"> 
+                                </md-icon>
+                            </md-button>
+                          </md-card-actions>
+                          <md-progress-linear id="linear_progress" style="visibility: hidden;" md-mode="indeterminate"></md-progress-linear>
+                        </div> 
+                        </md-card-content>
+                        
+                        
+                      </md-card>
+                       
+
+                    </div> 
+                      
+                    <div id="orders" style="min-height: 1000px;">
+                      <h1 class="md-display-1" style="color: #304FFE;">Orders made by customers</h1>
+                      <div class='md-padding' layout="row"  layout-wrap> 
+                        <md-card ng-repeat="x in orderAdminItems"  layout="column"  ng-hide='x.itemOrderName  == null'>
+                          <div>
+                            <md-button ng-click="processNow(x)" class="md-icon-button" style="position: absolute;margin-top: 10px;background-color: #fafafa;" >
+                                <md-icon md-svg-icon="/src/process.svg" style="color: #00E676;"> </md-icon>
+                            </md-button> 
+                            <label ng-model="x.itemOrderID" style="position: absolute;margin-top: 10px;visibility: hidden;"> {{ x.itemOrderID }}</label>
+                            <label ng-model="x.itemOrderDesc" style="position: absolute;margin-top: 10px;visibility: hidden;"> {{ x.itemOrderDesc }}</label>
+                            <label ng-model="x.orderOrderID" style="position: absolute;margin-top: 10px;visibility: hidden;"> {{ x.orderOrderID }}</label>
+                            <label ng-model="x.userFullName" style="position: absolute;margin-top: 10px;visibility: hidden;"> {{ x.userFullName }}</label>
+                            <label ng-model="x.userPhoneNo" style="position: absolute;margin-top: 10px;visibility: hidden;"> {{ x.userPhoneNo }}</label>
+                            <label ng-model="x.userAddress" style="position: absolute;margin-top: 10px;visibility: hidden;"> {{ x.userAddress }}</label>
+                            <label ng-model="x.userID" style="position: absolute;margin-top: 10px;visibility: hidden;"> {{ x.userID }}</label>
+                          <img ng-model="x.itemOrderImg" src="{{x.itemOrderImg}}" style="width:230px;height:230px;background-color: #82B1FF;" alt="image">
+                          </div>
+                            
+                          <div style="margin-bottom: 20px; margin-left: 20px; margin-right: 20px ;margin-top: 20px;" layout="column">
+                            <h3 ng-model="x.itemOrderName" style="margin: 0px;margin-top: 0px;"  class="md-headline" flex id="div-list-item-header" >{{ x.itemOrderName }}</h3>
+                         
+                            <div layout="row" layout-align="start center">
+                                <div layout="row" layout-align="start center">
+                                    <h4 class="md-subhead" style="vertical-align: middle;margin-right: 4px;color: #FF6F00">PHP</h4>
+                                    <h4 ng-model="x.itemOrderPrice" class="md-subhead" style="color: #FF6F00;" >{{ x.itemOrderPrice }}</h4>
+                                    <h4 class="md-subhead" style="vertical-align: middle;margin-right: 4px;color: #FF6F00;">.00</h4>
+                                </div>
+                              <div layout="row" layout-align="start center" flex style="margin-top: 0px;margin-left: 20px">
+                                   
+                                  <md-icon md-svg-icon="/src/item_count.svg" style="color: #78909C;"> </md-icon>
+                                   
+                                  <input ng-model="x.itemOrderCount" class="md-subhead" value="" style="margin: 0px;margin-top: 0px;width:20px;border: #fff;
+                                  text-align: center; color: #78909C;background-color: transparent;"  id="itemCount" disabled="true" >
+                                   
+                              </div>
+                              
+                            </div>
+                            <div layout="column">
+                              <div layout="row" layout-align="start center" style="margin-top: 10px;">
+                                  <md-icon md-svg-icon="/src/today.svg" style="width: 18px;height: 18px;color: #2979FF;"></md-icon>
+                                  <h4 ng-model="x.dateOrderAdded" class="md-subhead" flex  style="margin: 0px;margin-top: 0px;font-size: 10px;margin-left: 10px;color: #2979FF;"  id="div-list-item-subhead" >{{ x.dateOrderAdded }}</h4>
+                                  
+                              </div>
+                              <div layout="row" layout-align="start center" style="margin-top: 10px;">
+                                  <md-icon md-svg-icon="/src/local_shipping.svg"  style="width: 18px;height: 18px;color: #00E676;"></md-icon>
+                                  <h4 ng-model="x.dateOrderDelivery" class="md-subhead" flex  style="margin: 0px;margin-top: 0px;font-size: 10px;margin-left: 10px;color: #00E676;"  id="div-list-item-subhead" >{{ x.dateOrderDelivery }}</h4>
+                                  
+                              </div>
+                              
+                              
+                            </div>
+                           
+                          </div>
+                            
+                        </md-card>  
+                      </div>      
+   
+                    </div> 
+
+                    <div id="processing" style="min-height: 1000px;">
+                      <h1 class="md-display-1" style="color: #304FFE;">Orders being Processed</h1>
+                      <div class='md-padding' layout="column"  layout-wrap> 
+                        <md-card ng-repeat="x in processingAdminItems" class="md-block" flex layout="row"  ng-hide='x.itemOrderName  == null'>
+                          <div>
+                            <md-button ng-click="deliverNow(x)" class="md-icon-button" style="position: absolute;margin-top: 10px;background-color: #fafafa;" >
+                                <md-icon md-svg-icon="/src/local_shipping.svg" style="color: #00E676;"> </md-icon>
+                            </md-button> 
+                            <label ng-model="x.itemOrderID" style="position: absolute;margin-top: 10px;visibility: hidden;"> {{ x.itemOrderID }}</label>
+                            <label ng-model="x.orderOrderID" style="position: absolute;margin-top: 10px;visibility: hidden;"> {{ x.orderOrderID }}</label>
+                           
+                            <label ng-model="x.userID" style="position: absolute;margin-top: 10px;visibility: hidden;"> {{ x.userID }}</label>
+                            
+                          <img ng-model="x.itemOrderImg" src="{{x.itemOrderImg}}" style="width:250px;height:100%;display: block;object-fit: cover;background-color: #82B1FF;" alt="image">
+                          </div>
+                            
+                          <div style="margin-bottom: 20px; margin-left: 20px; margin-right: 20px ;margin-top: 20px;" layout="column">
+
+                            <div layout="column">
+                              <div layout="column">
+                                <h3 class="md-title" ng-model="x.userFullName" style="margin-top: 0px; "> {{ x.userFullName }}</h3>
+                                <h3 class="md-subhead" ng-model="x.userPhoneNo" style="margin-top: 0px;"> {{ x.userPhoneNo }}</h3>
+                              </div>
+                              
+                              <h4 class="md-subhead" ng-model="x.userAddress" style="margin-top: 0px; "> {{ x.userAddress }}</h4>
+                              <h4 ng-model="x.itemOrderName" style="margin-top: 0px;"  class="md-subhead">{{ x.itemOrderName }}</h4>
+                              
+                              <h4 ng-model="x.itemOrderDesc" class="md-subhead" style="margin-top: 0px;"> {{ x.itemOrderDesc }}</h4>
+                            </div>
+ 
+
+                            <div layout="row">
+                                
+                         
+                            <div layout="column" layout-align="start center" style="margin-left: 0px;">
+                              <div layout="row" layout-align="start center">
+                                <h4 class="md-subhead" style="vertical-align: middle;margin-right: 4px;margin-top: 0px;color: #FF6F00">PHP</h4>
+                                <h4 ng-model="x.itemOrderPrice" class="md-subhead" style="margin-top: 0px;color: #FF6F00;"  id="div-list-item-subhead"  >{{ x.itemOrderPrice }}</h4>
+                                <h4 class="md-subhead" style="vertical-align: middle;margin-right: 4px;margin-top: 0px;color: #FF6F00">.00</h4>
+                              </div>
+                              
+                              <div layout="row" style="margin-top: -10px;" >
+                                   
+                                  <md-icon md-svg-icon="/src/item_count.svg" style="color: #78909C;margin-top: 0px;"> </md-icon>
+                                   
+                                  <input ng-model="x.itemOrderCount" class="md-subhead" value="" style="margin-top: 0px;width:20px;border: #fff;
+                                  text-align: center; color: #78909C;background-color: transparent;"  id="itemCount" disabled="true" >
+                                   
+                              </div>
+                              
+                            </div>
+                            <div layout="column" style="margin-left: 20px;">
+                              <div layout="row" layout-align="start center" style="margin-top: 0px;">
+                                  <md-icon md-svg-icon="/src/today.svg" style="width: 18px;height: 18px;color: #2979FF;"></md-icon>
+                                  <h4 ng-model="x.dateOrderAdded" class="md-subhead" flex  style="margin: 0px;margin-top: 0px;font-size: 10px;margin-left: 10px;color: #2979FF;"  id="div-list-item-subhead" >{{ x.dateOrderAdded }}</h4>
+                                  
+                              </div>
+                              <div layout="row" layout-align="start center" style="margin-top: 10px;">
+                                  <md-icon md-svg-icon="/src/local_shipping.svg"  style="width: 18px;height: 18px;color: #00E676;"></md-icon>
+                                  <h4 ng-model="x.dateOrderDelivery" class="md-subhead" flex  style="margin: 0px;margin-top: 0px;font-size: 10px;margin-left: 10px;color: #00E676;"  id="div-list-item-subhead" >{{ x.dateOrderDelivery }}</h4>
+                                  
+                              </div>
+                              
+                              
+                            </div>
+                            </div>
+                            
+                           
+                          </div>
+                            
+                        </md-card>  
+                      </div>      
+   
+                    </div> 
+
+                    <div id="delivered" style="min-height: 700px;width: 100%;">
+                        <h1 class="md-display-1" style="color: #304FFE;">Delivered Products</h1>
+
+                        <div class='md-padding' layout="row"  layout-wrap> 
+                            <md-card ng-repeat="x in deliveredItems" class="md-block" flex layout="row"  style="min-width: 250px;" ng-hide='x.itemOrderName  == null'>
+                              
+                              <div style="background-color: #304FFE;width: 4px;height: auto;">
+
+                              </div>  
+                              <div style="margin-bottom: 20px; margin-left: 20px; margin-right: 20px ;margin-top: 20px;" layout="column">
+    
+                                <div layout="column">
+                                  <div layout="column">
+                                    <h3 class="md-title" ng-model="x.userFullName" style="margin-top: 0px; "> {{ x.userFullName }}</h3>
+                                    <h3 class="md-body-1" ng-model="x.userPhoneNo" style="margin-top: -10px;"> {{ x.userPhoneNo }}</h3>
+                                  </div>
+                                  
+                                  <h4 class="md-body-1" ng-model="x.userAddress" style="margin-top: -10px; "> {{ x.userAddress }}</h4>
+
+                                  <md-divider style="margin-top: -7px;"></md-divider>
+                                  <h4 ng-model="x.itemOrderName" style="margin-top: 10px;"  class="md-body-1">{{ x.itemOrderName }}</h4>
+                                  
+                                  <h4 ng-model="x.itemOrderDesc" class="md-body-1" style="margin-top: -10px;"> {{ x.itemOrderDesc }}</h4>
+                                </div>
+     
+    
+                                <div layout="column">
+                                    
+                             
+                                <div layout="row" layout-align="center center" style="margin-left: -20px;">
+                                  <div layout="row" layout-align="center center">
+                                    <h4 class="md-body-1" style="vertical-align: middle;margin-right: 4px;margin-top: 0px;color: #FF6F00">PHP</h4>
+                                    <h4 ng-model="x.itemOrderPrice" class="md-body-1" style="margin-top: 0px;color: #FF6F00;"  id="div-list-item-subhead"  >{{ x.itemOrderPrice }}</h4>
+                                    <h4 class="md-body-1" style="vertical-align: middle;margin-right: 4px;margin-top: 0px;color: #FF6F00">.00</h4>
+                                  </div>
+                                  
+                                  <div layout="row" style="margin-top: -20px;margin-left: 30px;" >
+                                       
+                                      <md-icon md-svg-icon="/src/item_count.svg" style="color: #78909C;margin-top: 0px;"> </md-icon>
+                                       
+                                      <input ng-model="x.itemOrderCount" class="md-body-1" value="" style="margin-top: 3px;width:20px;border: #fff;
+                                      text-align: center; color: #78909C;background-color: transparent;"  id="itemCount" disabled="true" >
+                                       
+                                  </div>
+                                  
+                                </div> 
+                                  <div layout="row" layout-align="start center" style="margin-top: -10px;">
+                                      <md-icon md-svg-icon="/src/check_delivered.svg" style="width: 18px;height: 18px;color: #00E676;"></md-icon>
+                                      <h4 ng-model="x.dateOrderAdded" class="md-subhead" flex  style="margin: 0px;margin-top: 0px;font-size: 10px;margin-left: 10px;color: #2979FF;"  id="div-list-item-subhead" >{{ x.dateOrderAdded }}</h4>
+                                      
+                                  </div> 
+                                  
+                                   
+                                </div>
+                                
+                               
+                              </div>
+                                
+                            </md-card>  
+                          </div>      
+                    </div>  
+                   
+                  </md-content> 
+
+              </div>
+              
+              <div style=" background-color: #304FFE; margin-bottom: 0% " layout-align="center center" layout-xs="column" layoput-sm="column" layout-lg="row"> 
+
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column">
+                  <md-button href="./store.html" style="width: 200px; text-align: left;text-indent: 20px">Store</md-button> 
+                  <md-button href="./index.html" style="width: 200px; text-align: left;text-indent: 20px">Home</md-button> 
+                </div>
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column"> 
+                  <md-button href="./about.html" style="width: 200px; text-align: left;text-indent: 20px">About</md-button>
+                  <md-button href="./terms-conditions.html" style="width: 200px; text-align: left;text-indent: 20px">Terms & Condition</md-button>  
+                </div>
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column"> 
+                  <md-button href="./privacy-policy.html" style="width: 200px; text-align: left;text-indent: 20px">Privacy Policy</md-button> 
+                  <md-button href="./login.html" style="width: 200px; text-align: left;text-indent: 20px">Account</md-button> 
+                </div>
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column">  
+                  <md-button href="./locations.html" style="width: 200px; text-align: left;text-indent: 20px">Office Location</md-button>
+                  <md-button href="./contact-us.html" style="width: 200px; text-align: left;text-indent: 20px">Contact Us</md-button>
+                </div>
+            </div> 
+      </md-content> 
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
+
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-storage.js"></script>
+
+      <script src="js/init-firebase.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+      <script src="js/index.js"></script>       
+
+      <script>
+
+      var lb_first_name;
+      var lb_last_name;
+      var lb_email;
+      var lb_uid;  
+
+      var x1 = document.getElementById("add_items");
+      var x2 = document.getElementById("orders");
+      var x2_1 = document.getElementById("processing");   
+      var x3 = document.getElementById("delivered");      
+
+      var item_name = document.getElementById('item_name');
+      var item_desc = document.getElementById('item_desc');
+      var item_price = document.getElementById('item_price');
+
+      var ln_prg = document.getElementById('linear_progress');
+      
+        x2.style.display = "none";
+        x2_1.style.display = "none";
+        x3.style.display = "none"; 
+
+        // Check for the various File API support.
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+          // Great success! All the File APIs are supported.
+        } else {
+          alert('The File APIs are not fully supported in this browser.');
+        }
+
+        function initApp(){
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+              // User is signed in.
+              var displayName = user.displayName;
+              var email = user.email;
+              var emailVerified = user.emailVerified;
+              var photoURL = user.photoURL;
+              var isAnonymous = user.isAnonymous;
+              var uid = user.uid;
+              var providerData = user.providerData;
+
+
+              //document.getElementById("googleLogin").disabled = true;
+              
+                  //document.getElementById("btn_logout").disabled = false;
+
+              if(email != "woodscrapstore@gmail.com"){
+                try{
+                   
+                  setTimeout(function(){
+                    window.location.href = "https://wood-scrap.firebaseapp.com/account.html";
+                },200);
+
+                   
+                }catch(err){
+                  console.log("Element: status, not found")
+                } 
+              }
+
+              // ...
+            } else {
+              // User is signed out.
+              // ...
+              window.location.href = "https://wood-scrap.firebaseapp.com/login.html";
+            }
+          });
+          }
+
+        window.onload = function() {
+            try{
+              initApp();
+              
+              document.getElementById("btn_logout").disabled = true;
+            }catch(err){
+              console.log("error initialize.");
+            } 
+          };  
+
+      
+
+        function refresh(){
+          window.location.href = "https://wood-scrap.firebaseapp.com/admin.html";
+        }
+
+        function getFile() {
+          document.getElementById("files").click();
+        }
+
+        function sub(obj) {
+          var file = obj.value;
+          var fileName = file.split("\\");
+          //var path = (window.URL || window.webkitURL).createObjectURL(file);
+          //console.log('path', path);
+          //var finalPath = fileName.replace('C:'\'fakepath\')
+          //document.getElementById("file_name").innerHTML = fileName ;
+          //document.myForm.submit();
+          document.getElementById('add_photo').disabled = true;
+          event.preventDefault();
+        }
+
+        function handleFileSelect(evt) {
+          var files = evt.target.files; // FileList object
+
+          // Loop through the FileList and render image files as thumbnails.
+          for (var i = 0, f; f = files[i]; i++) {
+
+            // Only process image files.
+            if (!f.type.match('image.*')) {
+              continue;
+            }
+
+            var reader = new FileReader();
+
+            // Closure to capture the file information.
+            reader.onload = (function(theFile) {
+              return function(e) {
+                // Render thumbnail.
+                var span = document.createElement('span');
+                span.innerHTML = ['<img class="thumb" style="width:200px;height:200px" src="', e.target.result,
+                                  '" title="', escape(theFile.name), '"/>'].join('');
+                document.getElementById('list').insertBefore(span, null);
+              };
+            })(f);
+
+            // Read in the image file as a data URL.
+            reader.readAsDataURL(f);
+          }
+        }
+
+        document.getElementById('files').addEventListener('change', handleFileSelect, false);
+      
+        
+      
+
+        function showAddItems(){
+          x2.style.display = "none";
+          x2_1.style.display = "none";
+          x3.style.display = "none"; 
+
+          if (x1.style.display === "none") {
+            x1.style.display = "block";
+          }
+          //} else {
+           // x1.style.display = "none";
+          //}
+        }
+
+        function showOrders(){
+
+          x1.style.display = "none";
+          x2_1.style.display = "none";
+          x3.style.display = "none"; 
+
+          if (x2.style.display === "none") {
+            x2.style.display = "block";
+          }
+        }
+
+        function showDelivered(){
+
+          x2.style.display = "none";
+          x2_1.style.display = "none";
+          x1.style.display = "none"; 
+
+          if (x3.style.display === "none") {
+            x3.style.display = "block";
+          }
+        } 
+
+        function showProcessing(){
+
+          x3.style.display = "none";
+          x2.style.display = "none";
+          x1.style.display = "none"; 
+
+          if (x2_1.style.display === "none") {
+            x2_1.style.display = "block";
+          }
+        } 
+
+        function uploadItemToDB() {
+          const file = document.querySelector('#files').files[0];
+          if( item_name.value != "" && item_desc.value != "" && item_price.value != "Php " && file != null){
+          var storage = firebase.storage();
+          var storageRef = storage.ref();
+          var imagesRef = storageRef.child('images');
+          
+          const randomName = Math.floor(Math.random() * 10000);
+          const name = "item_"+randomName;
+          const metadata = { contentType: 'image' };
+          
+          ln_prg.style.visibility = "visible";
+          const task = imagesRef.child(name).put(file, metadata); 
+  
+            task
+              .then(snapshot => snapshot.ref.getDownloadURL())
+              .then((url) => {
+                    var image_url = url;
+                    console.log("the url is: "+image_url);
+
+                    const db = firebase.firestore(); 
+
+                    const docRef = db.doc("store/"+"items/"+"woods/"+name); 
+                    docRef.set({
+                      itemStoreName: item_name.value+"", 
+                      itemStoreDesc: item_desc.value+"",
+                      itemStorePrice: item_price.value+"",
+                      itemStoreImg: url+"",
+                      itemStoreID: name,
+                    })
+                    .then(function() {
+                      console.log("Successful");
+                      refresh();
+                      //document.getElementById("cloudSaveStatus").innerText = "Successful";
+                    })
+                    .catch(function(error) {
+                      console.error("Error adding document: ", error);
+                    });
+
+                  
+              })
+              .catch((error) => {
+              // A full list of error codes is available at
+              // https://firebase.google.com/docs/storage/web/handle-errors
+              switch (error.code) {
+                case 'storage/unauthorized':
+                  // User doesn't have permission to access the object
+                  break;
+                case 'storage/canceled':
+                  // User canceled the upload
+                  break; 
+                case 'storage/unknown':
+                  // Unknown error occurred, inspect error.serverResponse
+                  break;
+              }
+            });
+         
+          } else {
+                alert('Item photo, name, description and price must not be empty.');
+              }
+          
+
+
+        }
+
+        function alter(){
+          if (document.getElementById("delivery-address").disabled){
+              document.getElementById("alter-button").innerHTML = "Save";
+              document.getElementById("delivery-address").disabled = false;
+              document.getElementById("alter-button").setAttribute("disabled", null); 
+          } else {
+              document.getElementById("alter-button").innerHTML = "Edit";
+              document.getElementById("delivery-address").disabled = true
+              
+              var db = firebase.firestore();
+              var user_address = document.getElementById("delivery-address").value; 
+              //var medForIllness1 = document.getElementById("medForIllness").value;
+              //var docname = uid.replace(/\s+/g, '');
+              //var status; 
+              var newDate = new Date();
+              
+              var datetime = "Edited on: " + new Date().toLocaleString();
+              var docDateTime = new Date().toLocaleString();
+              var finalDocDateTime = docDateTime.replace(/\//g, "-");
+
+              const docRef = db.doc("users/"+uid+"/account_info/address");
+              const docRef1 = db.doc("user_lists/"+uid); 
+
+
+              docRef.set({
+                userAddress: user_address+" ", 
+              })
+              .then(function() {
+                console.log("Successful");
+                //document.getElementById("cloudSaveStatus").innerText = "Successful";
+              })
+              .catch(function(error) {
+                console.error("Error adding document: ", error);
+              });
+              docRef1.set({
+                userAddress: user_address+" ", 
+              });
+               
+          } 
+        }
+      </script>
+  </body>
+  
+
+</html>

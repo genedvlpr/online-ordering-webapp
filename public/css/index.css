@@ -1,0 +1,95 @@
+
+#toolbar{
+    background-color: transparent;
+    color: #fff;
+}
+
+.div_form{
+    margin-top: 10px;
+}
+#input_container_2{
+    margin-top: -20px;
+}
+
+#card-1{
+    margin-top: 50px;
+    height: 30%;
+}
+.card_holder_1{
+}
+
+#label_input{
+    font-size: 16px;
+}
+
+#headline{
+    margin-top: 0%;
+    text-align: center;
+}
+#subhead{
+    text-align: center;
+}
+
+#div_btn{
+    margin-top: 0px;
+}
+
+#status{
+    margin-top: 20px;
+}
+
+#md-avatar{
+    width: 32px;
+    height: 32px;
+    padding: 10px;
+    margin-right: 20px;
+}
+
+#list_title{
+    color: #fafafa;
+    font-weight: 300; 
+    font-size: 14px;;
+}
+
+#list-subhead{
+    color: #8C9EFF;
+}
+#headline{
+    color: #304FFE;
+}
+
+#subhead{
+    color: #283593;
+}
+ 
+
+md-checkbox.md-checked.white .md-icon {
+    background-color: rgba(140, 158, 255, 0.87);
+   }
+
+#category-header{
+    font-weight: 300;
+}
+
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: red;
+}
+ 
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}

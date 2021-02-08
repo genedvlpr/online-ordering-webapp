@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>On Deliveries</title>
+
+    <link rel="stylesheet" href="css/index.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="red" content="#5a1720">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="css/angular-material.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+      <meta name="google-signin-scope" content="profile email">
+      <meta name="google-signin-client_id" content="894710452295-tfnq8irf0p6fphcihr32307p3rgom59t.apps.googleusercontent.com">
+      <script src="https://apis.google.com/js/platform.js" async defer></script>  
+
+      <style>
+        body{ 
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-color: #fafafa;
+          background-attachment:scroll; 
+          align-content: center;
+        }
+      </style>
+  
+    </head>
+      <body id="body" ng-app="NewApp" ng-cloak ng-controller="AppCtrl">
+        <!--
+          Your HTML content here
+        -->  
+        
+        <!-- Angular Material requires Angular.js Libraries -->
+        <script src="js/angular.min.js"></script>
+        <script src="js/angular-animate.min.js"></script>
+        <script src="js/angular-aria.min.js"></script>
+        <script src="js/angular-messages.min.js"></script>
+      
+        <!-- Angular Material Library -->
+        <script src="js/angular-material.min.js"></script>
+        
+        <md-content id="content" style="background-color: transparent;">
+            <md-toolbar class="md-whiteframe-2dp" id="toolbar" style="position: fixed; top:0%; background-color: #F5F5F5;color:#304FFE">
+                <div class="md-toolbar-tools" > 
+                  <div flex md-truncate >
+                    <img src="./src/ic_logo_dark.png" style="width: 120px;height:45px;"> 
+                  </div>
+                    
+                    <md-button href="https://wood-scrap.firebaseapp.com/on_delivery.html">Refresh</md-button>
+                </div>
+            </md-toolbar>
+      
+            <div id="deliveries" ng-controller="AppCtrl" layout="column" layout-align="center center"  ng-cloak style="background-color: #FAFAFA; width: 100%;padding: 20px;">
+        
+                  
+                     
+                        <h3 class="md-display-2" class="md-block" flex style="margin-top: 90px;width: 100%;text-align: center;color: #616161;">Orders to be delivered.</h3>
+                        <md-card  layout="column" ng-repeat="x in delivering" ng-hide='x.userFullName  == null' class="md-block" flex style="width: 90%;padding: 20px">
+                            <h4 ng-model="x.userFullName" class="md-headline" style="color: #304FFE;margin-top: 0px;font-weight: 500;">{{ x.userFullName }}</h4>
+                            <h4 ng-model="x.userAddress" class="md-title" style="color: #536DFE;margin-top: -30px;font-weight: 300;">{{ x.userAddress }}</h4>
+                            <h4 ng-model="x.userPhoneNo" class="md-title" style="color: #536DFE;margin-top: -25px;font-weight: 300;">{{ x.userPhoneNo }}</h4>
+                            <md-divider style="margin-top: -12px;"></md-divider>
+                            <h4 ng-model="x.itemOrderName" class="md-body-1" style="color: #616161;margin-top: 12px;">{{ x.itemOrderName }}</h4>
+                            <h4 ng-model="x.itemOrderDesc" class="md-body-1" style="color: #616161;margin-top: -12px;">{{ x.itemOrderDesc }}</h4>
+                            <div layout="row">
+                                <div layout="row">
+                                  <h4 ng-model="x.itemOrderCount" class="md-body-1" style="color: #9E9E9E;margin-top: -12px;">Quantity:</h4>
+                                  <h4 ng-model="x.itemOrderCount" class="md-body-1" style="color: #9E9E9E;margin-top: -12px;margin-left: 4px;">{{ x.itemOrderCount }}</h4>
+                                </div>
+                                
+                                <div layout="row" style="margin-left: 50px;">
+                                  <h4 ng-model="x.itemOrderPrice" class="md-body-1" style="color: #9E9E9E;margin-top: -12px;">Php</h4>
+                                  <h4 ng-model="x.itemOrderPrice" class="md-body-1" style="color: #9E9E9E;margin-top: -12px;margin-left: 4px;">{{ x.itemOrderPrice }}</h4>
+                                  <h4 ng-model="x.itemOrderPrice" class="md-body-1" style="color: #9E9E9E;margin-top: -12px;">.00</h4>
+                                </div>
+                            </div>
+                            
+                            
+                            <md-card-actions class="md-block" flex style="width: 100%;align-items: center;" layout-align="center center">
+                              <md-button  flex class="md-flat" style="color: #00C853;width: 98%;align-self: center;" ng-click="delivered(x)">Delivered</md-button>
+                            </md-card-actions>
+                        </md-card>
+                   
+               
+
+              </div> 
+
+              <div id="auth" style="margin-top: 100px;" layout="column" layout-align="center center">
+                <h3 id="registered_codes" style="display: none;"></h3>
+                <md-input-container class="md-block" flex style="width: auto;">
+                  <label>PIN Code</label>
+                  <input id="pin_code" value="" placeholder="Enter a registered PIN" style="width: 250px;" >
+                </md-input-container>   
+                <md-button class="md-raised" onclick="accessDeliveries()" style="margin-top: 20px;color: #E3F2FD;background-color: #2962FF;">
+                  Access Deliveries
+                </md-button>
+              </div>
+      </md-content> 
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
+
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-firestore.js"></script>
+ 
+      
+      <script src="./js/index.js"></script>    
+
+      <script>
+        var deliveries = document.getElementById("deliveries");
+        var auth = document.getElementById("auth");
+        var pin_code = document.getElementById("pin_code");
+        var registered_codes = document.getElementById("registered_codes");
+        deliveries.style.display = "none";
+        
+        window.onload = function() {
+         
+          var db = firebase.firestore();
+
+                const docRef = db.doc("delivery_officer_codes/pin_codes/");
+ 
+
+                docRef.get().then(function(doc) {
+                    if (doc.exists) {
+                        //console.log("Document data:", doc.data());
+                        var codes = doc.data();
+                        registered_codes.innerText = codes.pin_code;
+                         
+                    } else {
+                        // doc.data() will be undefined in this case
+                         
+
+                        console.log("No such document!");
+                    }
+                }).catch(function(error) {
+                    console.log("Error getting document:", error);
+                });
+        }; 
+
+        function accessDeliveries(){
+          if(pin_code.value === "" || pin_code.value ===" "){
+            alert('PIN must not be null.');
+          }
+          else if (registered_codes.innerText.includes(pin_code.value)){
+            
+              auth.style.display = "none"  ;
+              deliveries.style.display = "block"  ;
+          } else{
+            alert('Invalid Code.');
+          }                  
+        }
+      </script>
+ 
+  </body>
+  
+
+</html>

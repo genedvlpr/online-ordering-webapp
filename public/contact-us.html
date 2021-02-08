@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact Us</title>
+
+    <link rel="stylesheet" href="css/index.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="red" content="#5a1720">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="css/angular-material.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+      <style>
+        body{ 
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-color: #fafafa;
+          background-attachment:scroll; 
+          align-content: center;
+        }
+      </style>
+  
+    </head>
+      <body id="body" ng-app="NewApp" ng-cloak ng-controller="AppCtrl">
+        <!--
+          Your HTML content here
+        -->  
+        
+        <!-- Angular Material requires Angular.js Libraries -->
+        <script src="js/angular.min.js"></script>
+        <script src="js/angular-animate.min.js"></script>
+        <script src="js/angular-aria.min.js"></script>
+        <script src="js/angular-messages.min.js"></script>
+      
+        <!-- Angular Material Library -->
+        <script src="js/angular-material.min.js"></script>
+        
+        <md-content id="content" style="background-color: transparent;">
+            <md-toolbar class="md-whiteframe-2dp" id="toolbar" style="position: fixed; top:0%; background-color: #F5F5F5;color:#304FFE">
+                <div class="md-toolbar-tools" >
+                    <md-button class="md-icon-button"  ng-click="toggleLeft()"    >
+                        <md-icon>
+                          <i class="material-icons" style="color: #304FFE">menu</i>
+                        </md-icon>
+                    </md-button>
+              
+                    <div flex md-truncate >
+                        <img src="./src/ic_logo_new.png" style="width: 120px;height:45px;"> 
+                      </div>
+              
+                      <md-button href="./store.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">Store</md-button>
+                      <md-button href="./about.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">About</md-button>
+                      <md-button href="./terms-conditions.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">Terms & Condition</md-button>
+                      <md-button href="./privacy-policy.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">Privacy Policy</md-button>
+                </div>
+            </md-toolbar>
+      
+            <div ng-controller="AppCtrl" layout="column"  ng-cloak style="background-color: #536DFE;">
+       
+              
+                  
+              <md-sidenav class="md-sidenav-left" md-component-id="left"
+                              md-disable-backdrop="" md-whiteframe="8" style="background-color: #304FFE">
+               
+              
+                    <md-content layout-margin=""  style="background-color: #304FFE">
+                            <md-list ng-controller="ListCtrl" ng-cloak> 
+                                <md-list-item class="md-2-line" ng-repeat="item in todos" ng-click="null" href="{{ item.href }}">
+                                        <img style="filter: grayscale(100%);" id="md-avatar" ng-src="{{item.face}}"   alt="{{item.who}}" />
+    
+                                        <div class="md-list-item-text" layout="column">
+                                          <h3 id="list_title">{{ item.title }}</h3>
+                                          <h4 id="list-subhead">{{ item.description }}</h4>
+                                        </div>
+                                      </md-list-item>
+                            </md-list>
+                      <div layout-align="end end" layout="column" >
+                        <md-button class="md-fab md-mini md-primary" ng-click="toggleLeft()" style="background-color: #FAFAFA">
+                            <md-icon>
+                              <i class="material-icons"  style="color: #304FFE">chevron_left</i>
+                            </md-icon>
+                        </md-button>
+                      </div>
+                      
+                    </md-content>
+              
+                  </md-sidenav>
+              
+                  <md-content layout="column" layout-align="center center" style="background-color: transparent; margin-top: 56px;margin-left:10%;margin-right:10%;">
+               
+                     
+                    <div layout-align-lg="center center" layout-align-xs="center center" layout-lg="row" layout-xs="column"  style="margin-top: 100px;margin-bottom: 100px">
+
+                     <div layout="column" class="md-padding" >
+                        <h1 id="headline" class="md-display-3" style="text-align: center ;color: #F5F5F5;">V.C. Saputil Lumber & Pallets</h1>
+                        <md-card class="md-whiteframe-8dp" layout="column">
+                          <div layout="row" layout-align="center start">
+                             
+                          <h3 id="subhead" class="md-subhead md-block" style="text-align: center;margin:20px; color:black">
+                           Besides Petron in Biga I, KM. 41 Aguinaldo Highway Biga I, Silang, Cavite
+                          </h3>
+                          </div>
+
+                          <div style="margin-top: 0px;" layout="row" layout-align="center start">
+                              
+                            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                              <path fill="#2962FF" d="M20,15.5C18.8,15.5 17.5,15.3 16.4,14.9C16.3,14.9 16.2,14.9 16.1,14.9C15.8,14.9 15.6,15 15.4,15.2L13.2,17.4C10.4,15.9 8,13.6 6.6,10.8L8.8,8.6C9.1,8.3 9.2,7.9 9,7.6C8.7,6.5 8.5,5.2 8.5,4C8.5,3.5 8,3 7.5,3H4C3.5,3 3,3.5 3,4C3,13.4 10.6,21 20,21C20.5,21 21,20.5 21,20V16.5C21,16 20.5,15.5 20,15.5M5,5H6.5C6.6,5.9 6.8,6.8 7,7.6L5.8,8.8C5.4,7.6 5.1,6.3 5,5M19,19C17.7,18.9 16.4,18.6 15.2,18.2L16.4,17C17.2,17.2 18.1,17.4 19,17.4V19Z" />
+                            </svg>  
+                            <h3 id="subhead" class="md-subhead" style="text-align: center;margin-left:5px;margin-top:0px; color:black">
+                                (042) 34549
+                            </h3>
+                            </div>
+                          
+                        </md-card>
+                         
+                      </div> 
+                      
+                </div>
+                  </md-content> 
+
+              </div>
+              
+              <div style=" background-color: #304FFE; margin-bottom: 0% " layout-align="center center" layout-xs="column" layoput-sm="column" layout-lg="row"> 
+
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column">
+                  <md-button href="./store.html" style="width: 200px; text-align: left;text-indent: 20px">Store</md-button> 
+                  <md-button href="./index.html" style="width: 200px; text-align: left;text-indent: 20px">Home</md-button> 
+                </div>
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column"> 
+                  <md-button href="./about.html" style="width: 200px; text-align: left;text-indent: 20px">About</md-button>
+                  <md-button href="./terms-conditions.html" style="width: 200px; text-align: left;text-indent: 20px">Terms & Condition</md-button>  
+                </div>
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column"> 
+                  <md-button href="./privacy-policy.html" style="width: 200px; text-align: left;text-indent: 20px">Privacy Policy</md-button> 
+                  <md-button href="./login.html" style="width: 200px; text-align: left;text-indent: 20px">Account</md-button> 
+                </div>
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column">  
+                  <md-button href="./locations.html" style="width: 200px; text-align: left;text-indent: 20px">Office Location</md-button>
+                  <md-button href="./contact-us.html" style="width: 200px; text-align: left;text-indent: 20px">Contact Us</md-button>
+                </div>
+            </div> 
+      </md-content> 
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
+
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-firestore.js"></script>
+
+      <script src="js/init-firebase.js"></script>
+      <script src="js/index.js"></script>       
+  </body>
+  
+
+</html>

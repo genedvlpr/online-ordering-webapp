@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="css/index.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="red" content="#5a1720">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="css/angular-material.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+      <meta name="google-signin-scope" content="profile email">
+      <meta name="google-signin-client_id" content="894710452295-tfnq8irf0p6fphcihr32307p3rgom59t.apps.googleusercontent.com">
+      <script src="https://apis.google.com/js/platform.js" async defer></script>  
+
+      <style>
+        body{ 
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-color: #fafafa;
+          background-attachment:scroll; 
+          align-content: center;
+        }
+      </style>
+  
+    </head>
+      <body id="body" ng-app="NewApp" ng-cloak ng-controller="AppCtrl">
+        <!--
+          Your HTML content here
+        -->  
+        
+        <!-- Angular Material requires Angular.js Libraries -->
+        <script src="js/angular.min.js"></script>
+        <script src="js/angular-animate.min.js"></script>
+        <script src="js/angular-aria.min.js"></script>
+        <script src="js/angular-messages.min.js"></script>
+      
+        <!-- Angular Material Library -->
+        <script src="js/angular-material.min.js"></script>
+        
+        <md-content id="content" style="background-color: transparent;">
+            <md-toolbar class="md-whiteframe-2dp" id="toolbar" style="position: fixed; top:0%; background-color: #F5F5F5;color:#304FFE">
+                <div class="md-toolbar-tools" >
+                     
+              
+                    <div flex md-truncate >
+                        <img src="./src/ic_logo_new.png" style="width: 120px;height:45px;"> 
+                      </div>
+              
+                      <md-button href="./index.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">Home</md-button>
+                      <md-button href="./about.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">About</md-button>
+                      <md-button href="./terms-conditions.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">Terms & Condition</md-button>
+                      <md-button href="./privacy-policy.html"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">Privacy Policy</md-button>
+                </div>
+            </md-toolbar>
+      
+            <div ng-controller="AppCtrl" layout="column"  ng-cloak style="background-color: #FAFAFA; ">
+       
+       
+               
+              
+                  <md-content layout="column" layout-align="center center" style="background-color: transparent; margin-top: 56px;margin-left:10%;margin-right:10%">
+               
+                     
+                    <div layout-align-lg="center center" layout-align-xs="center center" layout-lg="row" layout-xs="column"  style="margin-top: 100px;margin-bottom: 100px">
+
+
+                      <img hide-xs hide-sm src="./src/img_04.png" style="width: 400px;height:400px; margin-right: 50px ">
+
+                      <md-card class="md-whiteframe-10dp" style="padding: 50px;background: #3D5AFE;color: #FAFAFA;" layout="column"   >
+                        <div layout-md="column" layout-lg="column" layout-xs="column" layout-sm="column"layout-align-xs="center center" layout-align-sm="center center" layout-align-xs="center center"  layout-align-md="center center" layout-align-lg="center center">
+                          
+        
+                          <h1 class="md-display-1" style="text-align: center;">Log using your Google Account</h1>
+                          <h3 class="md-title" style="margin-top: -10px; text-align: center;">Login your accout and we asure you that no one can see your credentials</h3>
+            
+                       <div layout="column" id="div_btn">
+                         <md-button  md-no-ink  class="md-raised" id="googleLogin" onclick="loginAccount()" layout="row" style="padding-right: 20px;">
+                          <img hide-xs hide-sm src="https://firebasestorage.googleapis.com/v0/b/wood-scrap.appspot.com/o/google-logo-login.png?alt=media&token=efdfa513-b31a-4355-b0dd-6b0db95c625b" style="width: 36px;height:36px; align-self: center;  ">
+                          Sign in via Google </md-button>
+ 
+                      <md-button md-no-ink class="md-raised" id="btn_logout" onclick="logoutAccount()">
+                        
+                        Logout</md-button>
+        
+                    </div>
+                      
+                      <label id="status" class="md-subhead"></label>
+                  
+                  </div>
+                        </div>
+                      
+                  </md-card>
+                  </div>
+ 
+                  </md-content> 
+
+              </div>
+              
+              <div style=" background-color: #304FFE; margin-bottom: 0% " layout-align="center center" layout-xs="column" layoput-sm="column" layout-lg="row"> 
+
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column">
+                  <md-button href="./store.html" style="width: 200px; text-align: left;text-indent: 20px">Store</md-button> 
+                  <md-button href="./index.html" style="width: 200px; text-align: left;text-indent: 20px">Home</md-button> 
+                </div>
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column"> 
+                  <md-button href="./about.html" style="width: 200px; text-align: left;text-indent: 20px">About</md-button>
+                  <md-button href="./terms-conditions.html" style="width: 200px; text-align: left;text-indent: 20px">Terms & Condition</md-button>  
+                </div>
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column"> 
+                  <md-button href="./privacy-policy.html" style="width: 200px; text-align: left;text-indent: 20px">Privacy Policy</md-button> 
+                  <md-button href="./login.html" style="width: 200px; text-align: left;text-indent: 20px">Account</md-button> 
+                </div>
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column">  
+                  <md-button href="./locations.html" style="width: 200px; text-align: left;text-indent: 20px">Office Location</md-button>
+                  <md-button href="./contact-us.html" style="width: 200px; text-align: left;text-indent: 20px">Contact Us</md-button>
+                </div>
+            </div> 
+      </md-content> 
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
+
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-firestore.js"></script>
+ 
+      
+      <script src="./js/index.js"></script>    
+
+      <script>
+        function loginAccount(){
+  
+        firebase.auth()
+
+        .signInWithPopup(provider).then(function(result) {
+          var token = result.credential.accessToken;
+          var user = result.user;
+
+          console.log(user)
+
+          document.getElementById("btn_logout").disabled = false;
+
+        }).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+
+          console.log(error.code)
+          console.log(error.message)
+        });
+      }
+
+      function initApp(){
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+              // User is signed in.
+              var displayName = user.displayName;
+              var email = user.email;
+              var emailVerified = user.emailVerified;
+              var photoURL = user.photoURL;
+              var isAnonymous = user.isAnonymous;
+              var uid = user.uid;
+              var providerData = user.providerData;
+
+
+              //document.getElementById("googleLogin").disabled = true;
+              
+                  //document.getElementById("btn_logout").disabled = false;
+
+              if(email != "woodscrapstore@gmail.com"){
+                try{
+                  document.getElementById("status").textContent = "Successfully logged in";
+                  setTimeout(function(){
+                    window.location.href = "https://wood-scrap.firebaseapp.com/store.html";
+                },3000);
+
+                  document.getElementById("googleLogin").disabled = true;
+              
+                  document.getElementById("btn_logout").disabled = false;
+                }catch(err){
+                  console.log("Element: status, not found")
+                } 
+              }
+
+              if(email == "woodscrapstore@gmail.com"){
+                try{
+                  document.getElementById("status").textContent = "Successfully logged in";
+                  setTimeout(function(){
+                    window.location.href = "https://wood-scrap.firebaseapp.com/admin.html";
+                },3000);
+
+                  document.getElementById("googleLogin").disabled = true;
+              
+                  document.getElementById("btn_logout").disabled = false;
+                }catch(err){
+                  console.log("Element: status, not found")
+                } 
+              }
+
+              // ...
+            } else {
+              // User is signed out.
+              // ...
+              document.getElementById("status").textContent = "Signed out";
+              document.getElementById("btn_logout").disabled = true;
+            }
+          });
+          }
+
+          window.onload = function() {
+            try{
+              initApp();
+              
+              document.getElementById("btn_logout").disabled = true;
+            }catch(err){
+              console.log("error initialize.");
+            } 
+          };
+      </script>
+  </body>
+  
+
+</html>

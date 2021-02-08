@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Store</title>
+
+    <link rel="stylesheet" href="css/index.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="red" content="#5a1720">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="css/angular-material.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+      <style>
+        body{ 
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-color: #fafafa;
+          background-attachment:scroll; 
+          align-content: center;
+        }
+      </style>
+  
+    </head>
+      <body id="body" ng-app="NewApp" ng-cloak ng-controller="AppCtrl">
+        <!--
+          Your HTML content here
+        -->  
+        
+        <!-- Angular Material requires Angular.js Libraries -->
+        <script src="js/angular.min.js"></script>
+        <script src="js/angular-animate.min.js"></script>
+        <script src="js/angular-aria.min.js"></script>
+        <script src="js/angular-messages.min.js"></script>
+      
+        <!-- Angular Material Library -->
+        <script src="js/angular-material.min.js"></script>
+        
+        <md-content id="content" style="background-color: transparent;">
+            <md-toolbar class="md-whiteframe-2dp" id="toolbar" style="   top:0%; background-color: #F5F5F5;color:#304FFE">
+                <div class="md-toolbar-tools" >
+                     
+              
+                    <div flex md-truncate >
+                        <img src="./src/ic_logo_new.png" style="width: 120px;height:45px;"> 
+                      </div>
+              
+                      <md-button hide-xs hide-sm class="" id="btn_show_items" style="background-color: #F5F5F5; display: none;"></md-button>
+                      <md-button onclick="goToAccount()"  hide-xs hide-sm class="" id="btn_logout_home" style="background-color: #F5F5F5; " onclick=" ">Dashboard</md-button> 
+                </div>
+            </md-toolbar>
+      
+            <div ng-controller="AppCtrl" layout="row"  ng-cloak style="background-color: #FAFAFA; ">
+         
+              <md-sidenav md-component-id="left" layout="row" ng-hide=""
+            md-is-locked-open="$mdMedia('gt-lg')" class="md-sidenav-left" md-component-id="left"
+                            md-disable-backdrop=""  style="background-color: #3D5AFE; height: auto;">
+             
+            
+                  <md-content layout-margin=""  style="background-color: #3D5AFE;color: #fff;">
+                          <md-list ng-controller="ListCtrl" ng-cloak> 
+                              
+                            <h4 id="category-header">Filter</h4>
+                            <md-list-item class="md-1-line"  ng-click="null" >
+                                <md-checkbox   type="checkbox" class="white" ng-checked="selected=='Pice: High to Low'" ng-true-value="'Pice: High to Low'" ng-model="selected">Pice: High to Low</md-checkbox>
+                                <p id="list_title">Pice: High to Low</p> 
+                           
+                            </md-list-item>
+
+                            <md-list-item class="md-1-line"  ng-click="null" >
+                                <md-checkbox   type="checkbox" class="white" ng-checked="selected=='Pice: Low to High'" ng-true-value="'Pice: Low to High'" ng-model="selected">Pice: Low to High</md-checkbox>
+                                <p id="list_title">Pice: Low to High</p> 
+                           
+                            </md-list-item>
+ 
+                          </md-list>
+                    
+                    
+                  </md-content>
+            
+                </md-sidenav>
+              
+                  <md-content layout-align="center center" class="md-block" flex style="background-color: transparent; margin-top: 56px;margin-bottom: 56px;min-height: 700px;">
+ 
+                           <div class='md-padding' layout-align="center center"  layout-lg="row" layout-md="row" layout-sm="column" layout-xs="column"style="align-self: center;">
+                            <md-card style="width: 200px;" ng-repeat="x in storeItems" layout="column"  ng-hide='x.itemStoreDesc  == null'>
+                           
+                            <img ng-model="x.itemStoreImg" src="{{x.itemStoreImg}}" style="width:200px;height:200px;background-color: #82B1FF;" alt="image">
+                            <div style="margin-bottom: 20px; margin-left: 20px; margin-right: 20px ;margin-top: 20px;" layout="column">
+                              <h3 ng-model="x.itemStoreName" class="md-headline" flex style="margin: 0px;margin-top: 0px;"  id="div-list-item-header" >{{ x.itemStoreName }}</h3>
+                              <h4 ng-model="x.itemStoreDesc" class="md-subhead" flex  style="margin: 0px;margin-top: 0px;font-size: xx-small;"  id="div-list-item-subhead" >{{ x.itemStoreDesc }}</h4>
+                              <div layout="row" layout-align="start center">
+                                <h4 class="md-subhead" style="vertical-align: middle;margin-right: 4px;margin-top: 0px;color: #FF6F00;">PHP</h4>
+                                <h4 ng-model="x.itemStorePrice" class="md-subhead"  style="margin-top: 0px;color: #FF6F00;"  id="div-list-item-subhead" >{{ x.itemStorePrice }}</h4> 
+                                <h4 class="md-subhead" style="vertical-align: middle;margin-right: 4px;color: #FF6F00;margin-top: 0px;">.00</h4>
+                              </div> 
+
+                              <md-card-actions layout="row" layout-align="center center" >
+                                
+                                  <md-button ng-click="deleteFromStore(x)" class="md-icon-button">
+                                      <md-icon md-svg-icon="/src/delete.svg" style="color: #ff1744;">
+      
+                                      </md-icon>
+                                  </md-button> 
+                              </md-card-actions> 
+                            </div> 
+                          </md-card> 
+                          </div> 
+                  </md-content>  
+              </div>
+              
+              <div style=" background-color: #304FFE; margin-bottom: 0% " layout-align="center center" layout-xs="column" layoput-sm="column" layout-lg="row"> 
+
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column">
+                  <md-button href="./store.html" style="width: 200px; text-align: left;text-indent: 20px">Store</md-button> 
+                  <md-button href="./index.html" style="width: 200px; text-align: left;text-indent: 20px">Home</md-button> 
+                </div>
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column"> 
+                  <md-button href="./about.html" style="width: 200px; text-align: left;text-indent: 20px">About</md-button>
+                  <md-button href="./terms-conditions.html" style="width: 200px; text-align: left;text-indent: 20px">Terms & Condition</md-button>  
+                </div>
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column"> 
+                  <md-button href="./privacy-policy.html" style="width: 200px; text-align: left;text-indent: 20px">Privacy Policy</md-button> 
+                  <md-button href="./login.html" style="width: 200px; text-align: left;text-indent: 20px">Account</md-button> 
+                </div>
+                <div style="padding: 20px; color: #fff" layout-xs="row" layoput-sm="row" layout-lg="column">  
+                  <md-button href="./locations.html" style="width: 200px; text-align: left;text-indent: 20px">Office Location</md-button>
+                  <md-button href="./contact-us.html" style="width: 200px; text-align: left;text-indent: 20px">Contact Us</md-button>
+                </div>
+            </div> 
+      </md-content> 
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
+
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-firestore.js"></script>
+
+      <script src="js/init-firebase.js"></script>
+      <script src="js/index.js"></script>    
+      
+      <script> 
+        function initApp(){
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+              // User is signed in.
+              var displayName = user.displayName;
+              var email = user.email;
+              var emailVerified = user.emailVerified;
+              var photoURL = user.photoURL;
+              var isAnonymous = user.isAnonymous;
+              var uid = user.uid;
+              var providerData = user.providerData;
+
+
+              //document.getElementById("googleLogin").disabled = true;
+              
+                  //document.getElementById("btn_logout").disabled = false;
+
+              if(email != "woodscrapstore@gmail.com"){
+                try{
+                   
+                  setTimeout(function(){
+                    window.location.href = "https://wood-scrap.firebaseapp.com/store.html";
+                },200);
+
+                   
+                }catch(err){
+                  console.log("Element: status, not found")
+                } 
+              }
+
+              // ...
+            } else {
+              // User is signed out.
+              // ...
+              window.location.href = "https://wood-scrap.firebaseapp.com/login.html";
+            }
+          });
+          }
+
+        window.onload = function() {
+            try{
+              initApp();
+              
+              document.getElementById("btn_logout").disabled = true;
+            }catch(err){
+              console.log("error initialize.");
+            } 
+          };  
+        function goToAccount(){
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+              // User is signed in.
+              var displayName = user.displayName;
+              var email = user.email;
+              var emailVerified = user.emailVerified;
+              var photoURL = user.photoURL;
+              var isAnonymous = user.isAnonymous;
+              var uid = user.uid;
+              var providerData = user.providerData;
+ 
+
+              if(email != "woodscrapstore@gmail.com"){
+                try{ 
+                    window.location.href = "https://wood-scrap.firebaseapp.com/account.html"; 
+                }catch(err){
+                  console.log("Element: status, not found")
+                } 
+              }
+
+              if(email == "woodscrapstore@gmail.com"){
+                try{ 
+                    window.location.href = "https://wood-scrap.firebaseapp.com/admin.html"; 
+                }catch(err){
+                  console.log("Element: status, not found")
+                } 
+              }
+
+              // ...
+            } else {
+              window.location.href = "https://wood-scrap.firebaseapp.com/login.html"; 
+            }
+          });
+          }
+      </script>
+  </body>
+  
+
+</html>
